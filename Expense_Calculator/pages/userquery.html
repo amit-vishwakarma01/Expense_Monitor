@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>User Query</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  let hi='{{error}}'
+  if (hi){
+
+    alert('{{error}}');
+  
+  }
+
+  
+ 
+  
+</script>
+
+</head>
+<body >
+
+<!-- Navbar  --->
+<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container-fluid">
+            <a href="dashboard" class="navbar-brand">
+                <b style="color: black;">Expense Monitor</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="dashboard" class="nav-item nav-link active"><b style="color: black;">Home</b></a>
+                    <a href="contact" class="nav-item nav-link active"><b style="color: black;">Contact Us</b></a>
+                    <a href="userquery" class="nav-item nav-link active"><b style="color: black;">Queries</b></a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a href="/Expenses/addexpense" class="nav-item nav-link active"><button type="submit" class="btn btn-primary">+Add Expense</button></a>
+                     <a href="/Expenses/expense" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Show Expense</button></a>
+                	<a href="/authentication/change_password" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Change Password</button></a>
+                	<a href="/Expenses/myprofile" class="nav-item nav-link active"><button type="button" class="btn btn-primary">My Profile</button></a>
+                	<a href="/authentication/logout" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+<div style="margin-top:100px;">
+    <center>
+<table class="table table-success table-striped">
+  <tr>
+    <th>Query Id</th>
+    <th >Query Subject</th>
+    <th>Email Address</th>
+    <th >Query Detail</th>
+    <th>See Query</th>
+    <th>Close Query</th>
+</tr>
+{% for i in res%}
+<tr>
+    <th>{{i.queryid}}</th>
+    <td>{{i.subject}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.description}}</td>
+    <td><a href="userreply?qid={{i.queryid}}"><button class="btn btn-success btn-md">View</button></a></td>
+    <td><a href="userclose?qid={{i.queryid}}"><button class="btn btn-success btn-md">Close</button></a></td>
+
+</tr>
+{% endfor %}
+</table>
+</center>
+</div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

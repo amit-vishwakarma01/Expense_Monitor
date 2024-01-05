@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+	<title>Query Panel</title>
+	<style>
+        .multicolor-text {
+            text-align: center;
+            font-size: 50px;
+            background: linear-gradient(to left,
+                    violet,
+                    indigo,
+                    blue,
+                    green,
+                    yellow,
+                    orange,
+                    red);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+       
+    </style>
+    
+</head>
+<body>
+<div class="m-4">
+	<div >
+		<h2 class="multicolor-text">WELCOME TO ADMIN PANEL</h2>
+	</div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container-fluid">
+            <a href="admin_panel" class="navbar-brand">
+                <b style="color: black;">Expense Monitor</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="admin_panel" class="nav-item nav-link active">Home</a>
+                   
+                </div>
+
+                <div class="navbar-nav ms-auto">
+                    <a href="queries" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Queries</button></a>
+                    <a href="category" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Add/Manage Category</button></a>
+                    
+                    
+                	<a href="adminlogout" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+<div style="margin-top:100px;">
+    <center>
+<table class="table table-success table-striped">
+  <tr>
+    <th>Query Id</th>
+    <th >Query Subject</th>
+    <th>Email Address</th>
+    <th >Query Detail</th>
+    <th>See Query</th>
+    <th>Close Query</th>
+</tr>
+{% for i in res%}
+<tr>
+    <th>{{i.queryid}}</th>
+    <td>{{i.subject}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.description}}</td>
+    <td><a href="reply?qid={{i.queryid}}"><button class="btn btn-success btn-md">View</button></a></td>
+    <td><a href="close?qid={{i.queryid}}"><button class="btn btn-success btn-md">Close</button></a></td>
+
+</tr>
+{% endfor %}
+</table>
+</center>
+</div>
+
+
+    </div>
+
+</body>
+</html>

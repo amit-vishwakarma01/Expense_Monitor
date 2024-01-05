@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Expense Monitor</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+<script type="text/javascript">
+  let hi='{{error}}'
+  if (hi){
+
+    alert('{{error}}');
+  
+  }
+</script>
+
+</head>
+<body>
+
+<!-------------------------Navbar----------------->
+<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container-fluid">
+            <a href="home" class="navbar-brand">
+                 <b style="color: black;">Expense Monitor</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="home" class="nav-item nav-link active"><b style="color: black;">Home</b></a>
+                   
+                    <a href="#about" class="nav-item nav-link active"><b style="color: black;">About Us</b></a>
+                    <a href="#contact" class="nav-item nav-link active"><b style="color: black;">Contact Us</b></a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                	<a href="authentication/signup" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Signup</button></a>
+                    <a href="authentication/login" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Login</button></a>
+                    <a href="admin_panel/adminlogin" target="__blank" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Admin Login</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="row" style="margin-top:50px;">
+    <center><h1 style="font-weight: 100px bold; color:blue; font-family:bookman old style;">What's Interesting?</h1></center>
+    
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <br>
+        <b>
+        A graph can be defined as a pictorial representation or a diagram that represents data or values in an organized manner.The points on the graph often represent the relationship between two or more things.A bar graph is the representation of numerical data by rectangles (or bars) of equal width and varying height. The gap between one bar and another is uniform throughout. Bar graphs can be either horizontal or vertical. <br>
+        Expense Monitor provide you the Graphical Representaion of the Expenses in dahboard. graphs are gives you the best experience as mentioned right side.
+    </b>
+    </div>
+<div  class="col-md-5" >
+    <canvas id="myChart" width="800" height="800"></canvas>
+</center>
+
+</div>
+
+</div>
+
+
+
+
+<div id="about">
+    <div class="row" style="  margin-left: 3px; width: 98%;  ">
+        <center><h1 style="font-weight: 100px bold; color:blue; font-family:bookman old style;">About Us</h1></center>
+        <b>
+        Expense Monitor is the Website where user can signup their account and then add expenses to the account on daliy basis so that they can easily track their expenses. We have given the facility to view their expenses at any time  limits. User can fill the start and end date and get to know the expenses in between dates and also they can print the expense in pdf form. This is the Secure Platform where user can do things. We have a Query Panel where user can ask their queries and we can solve their queries in the Query Panel.
+    </b>
+    </div>
+</div>
+
+
+
+
+
+<div id="contact">
+    <section class="vh-60 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Contact Form
+            </h3>
+<small >Note-: <small style="color: red;">*</small> </small>Fields are Mendatory.<br>
+            <form action="submitquery1" method="post">
+                {% csrf_token %}
+                <br>
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="form-outline">
+                    <input type="email" id="emailAddress" placeholder="Email address" name="email"   class="form-control form-control-md" required />
+                    <label class="form-label" for="emailAddress">Email<small style="color: red;">*</small></label>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="form-outline">
+                        <select class="form-select" aria-label="Default select example" name="query_type" required>
+                            <option selected value="Other">Choose Query Type</option>
+                            <option value="Password Reset Issue">Password Forget Issue</option>
+                            <option value="Account Deletion Issue">Account Creation Issue</option>
+                            <option value="OTP does not sent">OTP does not sent</option>
+                            <option value="Login Issue">Login Issue</option>
+                            <option value="Other">Other</option>
+                      
+                  </select>
+    
+                    <label class="form-label" for="emailAddress">Query Type<small style="color: red;">*</small></label>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="form-outline">
+                    <textarea class="form-control form-control-md" placeholder="Describe your query........" rows="6" cols="50" name="description" required></textarea>
+                    <label class="form-label" for="emailAddress">Description<small style="color: red;">*</small></label>
+                  </div>
+                </div>
+            </div>
+              <div class="mt-4 pt-2">
+               <center> <input class="btn btn-primary btn-md" type="submit" value="Submit" /></center>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+
+
+
+
+
+</div>
+</body>
+
+
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: 'Expense Types',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 15)',
+                'rgba(54, 162, 235, 15)',
+                'rgba(255, 206, 86, 15)',
+                'rgba(75, 192, 192, 15)',
+                'rgba(153, 102, 255, 15)',
+                'rgba(255, 159, 64, 15)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            hoverOffset: 15
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+</script>
+</html>

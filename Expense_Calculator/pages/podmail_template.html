@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+    </style>
+    </head>
+    <body>
+        <h3 style="font-family: bookman old style;">Hi, <br><br>Please Find below expense details-: <br></h3>
+        <table style="font-family: bookman old style; border: 2px solid black;">
+            <thead>
+                <tr>
+                    <th colspan="5"><center>Transaction Detail</center></th>
+                </tr>
+        <tr> <th> Expense Name </th> <th scope="col"> Expense Type </th><th scope="col"> Amount</th><th scope="col"> Payment Date </th>Paid By <th></th> </tr>
+        </thead>
+        <tbody>
+        {% for i in res1 %}
+        <tr><td>{{i.name}} </td> <td>{{i.expensetype}} </td> <td>{{i.amount}} </td> <td>{{i.transactiondate}} </td> <td>{{i.podmemberName}}</td></tr>
+        {% endfor %}
+        <tr><td></td><td>Total </td> <td colspan="2">{{total}}</td></tr>
+    </tbody>
+    </table>
+<br><br>
+    <table class="table table-bordered border-primary">
+        <tr>
+            <th colspan="5"><center>Sharing Amount Detail</center></th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Amount Paid</th>
+            <th>Split Amount</th>
+            <th>Pending Amount</th>
+        </tr>
+        {% for i in memberamountlist%}
+        <tr>
+            <td>{{i.name}}</a></td>
+            <td>
+                {{i.totalpaid}}
+            </td>
+            <td>{{i.Split}}</td>
+            {% if i.pending < 0 %}
+            <td>No pending Amount</td>
+            {% else %}
+            <td>{{i.pending}}</td>
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>
+    Thank you<br>
+    Amit Vishwakarma<br>
+    Expense Monitor<br>
+</p>
+    </body>
+</html>

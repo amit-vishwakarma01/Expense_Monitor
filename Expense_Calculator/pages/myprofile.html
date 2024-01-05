@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Profile</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+<style type="text/css">
+        
+
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+.card-registration .select-arrow {
+top: 13px;
+}
+:root {
+  --borderWidth: 7px;
+  --height: 24px;
+  --width: 12px;
+  --borderColor: #78b13f;
+}
+
+body {
+  
+  text-align: center;
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+  border-right: var(--borderWidth) solid var(--borderColor);
+}
+    </style>
+<script type="text/javascript">
+  let hi='{{error}}'
+  if (hi){
+
+    alert('{{error}}');
+  
+  }
+
+  
+ 
+  
+</script>
+</head>
+<body >
+
+<div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container-fluid">
+            <a href="dashboard" class="navbar-brand">
+                 <b style="color: black;">Expense Monitor</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="dashboard" class="nav-item nav-link active"><b style="color: black;">Home</b></a>
+                    <a href="contact" class="nav-item nav-link active"><b style="color: black;">Contact Us</b></a>
+                    <a href="userquery" class="nav-item nav-link active"><b style="color: black;">Queries</b></a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                  <a href="/Expenses/addexpense" class="nav-item nav-link active"><button type="button" class="btn btn-primary">+Add Expense</button></a>
+                  <a href="/Expenses/expense" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Show Expense</button></a>
+                    <a href="/authentication/change_password" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Change Password</button></a>
+                	<a href="/Expenses/myprofile" class="nav-item nav-link active"><button type="button" class="btn btn-primary">My Profile</button></a>
+                	<a href="/authentication/logout" class="nav-item nav-link active"><button type="button" class="btn btn-primary">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+<section class="vh-60 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            {% if check %}
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">User Profile</h3>
+            {% else %}
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">My Profile</h3>
+            {% endif %}
+<small >Note-: <small style="color: red;">*</small> </small>Fields are Mendatory.<br>
+  <br>
+
+            <form action="/authentication/update_profile" method="post">
+              {% csrf_token %}
+               
+{% for i in res %}
+              <div class="row">
+                <div class="col-md-4 mb-4">
+
+                  <div class="form-outline">
+                    {% if check %}
+                    <input type="text" id="firstName" name="fname" value='{{i.fname}}' class="form-control form-control-md" required disabled />
+                    {% else %}
+                    <input type="text" id="firstName" name="fname" value='{{i.fname}}' class="form-control form-control-md" required />
+                    {% endif %}
+                    <label class="form-label" for="firstName">First Name<small style="color: red;">*</small></label>
+                  </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+
+                  <div class="form-outline">
+                    {% if check %}
+                    <input type="text" id="lastName" name="mname" value='{{i.mname}}' class="form-control form-control-md" disabled />
+                    {% else %}
+                    <input type="text" id="lastName" name="mname" value='{{i.mname}}' class="form-control form-control-md" />
+                    {% endif %}
+                    <label class="form-label" for="middleName">Middle Name</label>
+                  </div>
+
+                </div>
+
+                <div class="col-md-4 mb-4">
+
+                  <div class="form-outline">
+                    {% if check %}
+                    <input type="text" id="lastName" name="lname" value='{{i.lname}}' class="form-control form-control-md" required disabled />
+                    {% else %}
+                    <input type="text" id="lastName" name="lname" value='{{i.lname}}' class="form-control form-control-md" required />
+                    {% endif %}
+                    <label class="form-label" for="lastName">Last Name<small style="color: red;">*</small></label>
+                  </div>
+
+                </div>
+              </div>
+
+              
+              <div class="row">
+                <div class="col-md-6">
+                  {% if check %}
+                  <select class="form-select" aria-label="Default select example" name="gender" disabled>
+                    {% else %}
+                    <select class="form-select" aria-label="Default select example" name="gender">
+                      {% endif %}
+                      
+                      <option selected value='{{i.gender}}'>{{i.gender}}</option>
+                      <option  value="Male">Male</option>
+                      <option  value="Female">Female</option>
+                      <option  value="Other">Other</option>
+                      
+                  </select>
+                  <label class="form-label" for="lastName">Gender<small style="color: red;">*</small></label>
+                </div>
+
+                <div class="col-md-6 ">
+                  {% if check %}
+                  <div class="form-outline">
+                    <input type="text" id="phoneNumber" name="mobile" value='{{i.mobile}}' class="form-control form-control-md" maxlength="10" required disabled />
+                    {% else %}
+                    <input type="text" id="phoneNumber" name="mobile" value='{{i.mobile}}' class="form-control form-control-md" maxlength="10" required />
+                    {% endif %}
+                    <label class="form-label" for="phoneNumber" >Phone Number<small style="color: red;">*</small></label>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+
+              <div class="row">
+                <div class="col-md-6 mb-4 ">
+                  
+                  <div class="form-outline">
+                    {% if check %}
+                    <input type="email" id="emailAddress" name="email" value='{{i.email}}' class="form-control form-control-md" required disabled />
+                    {% else %}
+                    <input type="email" id="emailAddress" name="email" value='{{i.email}}' class="form-control form-control-md" required />
+                    {% endif %}
+                    <label class="form-label" for="emailAddress">Email<small style="color: red;">*</small></label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 md-6 ">
+                  <div class="form-outline">
+                    {% if check %}
+                    {% else %}
+                    <input type="Number" id="phoneNumber" name="salary" value='{{i.salary}}' class="form-control form-control-md" step="any" placeholder="Salary(In Rupees)"  required />
+                    <label class="form-label" for="phoneNumber" >Salary<small style="color: red;">*</small></label>
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
+              {% if check %}
+              {% else %}
+              <div class="mt-4 pt-2">
+                <center><input class="btn btn-primary btn-md" type="submit" value="Update Profile" /></center>
+              </div>
+              {% endif %}
+              {% endfor %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% if check %}
+{% else %}
+<button type="Submit" class="btn btn-danger" onclick="myFunction()"> Delete Your account</button>
+{% endif %}
+</div>
+<script type="text/javascript">
+                      function myFunction() {
+                      let text = "All you Expense details will be deleted. you can not retrieve your account.\nAre you sure want to delete your account?";
+                      if (confirm(text) == true) {
+                        location.href = 'deleteaccount';
+                      } 
+                    }
+
+
+
+            </script>
+</body>
+</html>
